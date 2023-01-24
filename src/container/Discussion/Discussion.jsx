@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Comment from "../../components/Comment/Comment";
 import FullComment from "../../components/FullComment/FullComment";
 import NewComment from "../../components/NewComment/NewComment";
+import { toast } from 'react-toastify';
 import "./discussion.css";
 
 const Discussion = () => {
@@ -42,7 +43,12 @@ const Discussion = () => {
   const renderComments = () => {
     let renderData = <p>Loading ...</p>;
 
-    if (error) renderData = <p>fetching data feild !</p>;
+    if (error) {
+      renderData = <p>fetching data feild !</p>;
+      toast.error("fetching data feild !",{
+        theme: "colored"
+      });
+    }
 
     if (comments && !error) {
       renderData = comments.map((c) => (
@@ -53,6 +59,9 @@ const Discussion = () => {
           onClick={() => selectedCommenthandler(c.id)}
         />
       ));
+      toast.success("get comments succesfully",{
+        theme: "colored"
+      })
     }
 
     return renderData;

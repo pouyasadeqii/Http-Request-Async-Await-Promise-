@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import "./newComment.css";
 
 const NewComment = ({ setComments }) => {
@@ -17,7 +18,10 @@ const NewComment = ({ setComments }) => {
     axios
       .post("http://localhost:3001/comments", comment)
       .then((res) => axios.get("http://localhost:3001/comments"))
-      .then((res) => setComments(res.data))
+      .then((res) => {
+        setComments(res.data);
+        toast.success("add comment successfull", { theme: "colored" });
+      })
       .catch((err) => console.log(err));
   };
   return (
