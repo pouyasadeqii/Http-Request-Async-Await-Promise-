@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import http from "../../services/httpServices";
 import "./fullComment.css";
 
 const FullComment = ({ selectetId }) => {
@@ -7,8 +7,8 @@ const FullComment = ({ selectetId }) => {
 
   useEffect(() => {
     if (selectetId) {
-      axios
-        .get(`http://localhost:3001/comments/${selectetId}`)
+      http
+        .get(`/comments/${selectetId}`)
         .then((res) => setComment(res.data))
         .catch();
     }

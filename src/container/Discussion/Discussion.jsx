@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import http from "../../services/httpServices";
 import Comment from "../../components/Comment/Comment";
 import FullComment from "../../components/FullComment/FullComment";
 import NewComment from "../../components/NewComment/NewComment";
@@ -15,7 +15,7 @@ const Discussion = () => {
   // 2.CDM => get data
 
   useEffect(() => {
-    // axios
+    // http
     //   .get("https://jsonplaceholder.typicode.com/comments")
     //   .then((response) => {
     //     console.log(response);
@@ -26,7 +26,7 @@ const Discussion = () => {
     //   });
     const getComments = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3001/comments");
+        const { data } = await http.get("/comments");
         setComments(data);
       } catch (error) {
         console.log(error);

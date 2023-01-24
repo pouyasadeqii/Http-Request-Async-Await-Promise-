@@ -1,4 +1,4 @@
-import axios from "axios";
+import http from "../../services/httpServices";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "./newComment.css";
@@ -15,9 +15,9 @@ const NewComment = ({ setComments }) => {
   };
 
   const createCommentHandler = () => {
-    axios
-      .post("http://localhost:3001/comments", comment)
-      .then((res) => axios.get("http://localhost:3001/comments"))
+    http
+      .post("/comments", comment)
+      .then((res) => http.get("/comments"))
       .then((res) => {
         setComments(res.data);
         toast.success("add comment successfull", { theme: "colored" });
